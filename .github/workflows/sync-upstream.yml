@@ -14,11 +14,12 @@ jobs:
   sync-upstream:
     runs-on: ubuntu-latest
     steps:
-      # 步骤1：检出当前仓库代码
+      # 步骤1：检出当前仓库代码，使用自定义的 PAT_TOKEN
       - name: 检出仓库代码
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # 拉取完整的提交历史，避免合并冲突
+          token: ${{ secrets.PAT_TOKEN }} # 使用具有 workflow 权限的 Token
 
       # 步骤2：配置Git身份（用于提交）
       - name: 配置Git用户信息
